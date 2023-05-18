@@ -18,7 +18,8 @@ export const notesApiSlice = apiSlice.injectEndpoints({
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5, //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds in abit low, in production it should be atleast one minute
+            //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds in abit low, in production it should be atleast one minute
+            // keepUnusedDataFor: 5,  sets to default 60 seconds
             transformResponse: responseData => {
                 //transforms the raw response to normalized and usable data
                 const loadedNotes = responseData.map(note => {

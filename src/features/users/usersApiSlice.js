@@ -16,7 +16,9 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5, //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds in abit low, in production it should be atleast one minute
+             //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds in abit low, in production it should be atleast one minute
+            //in this project we are actually not going to use this
+            // keepUnusedDataFor: 5, the default will be 60 seconds
             transformResponse: responseData => {
                 //transforms the raw response to normalized and usable data
                 const loadedUsers = responseData.map(user => {
@@ -78,8 +80,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 export const { //generates a custom hook and executes the getUsers query
     useGetUsersQuery,
     useAddNewUserMutation,
-    useUpdateNewUserMutation,
-    useDeleteNewUserMutation,
+    useUpdateUserMutation,
+    useDeleteUserMutation,
 } = usersApiSlice
 
 // returns the query result object back after calling getUsers query.
