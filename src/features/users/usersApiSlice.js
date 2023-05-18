@@ -28,6 +28,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             providesTags: (result, error, arg) => {
                 //This I actually got from the documentation, it helps  manage caching and invalidation of data.
                 //this is not a must, but I found that helpful in this project
+                //when using redux then this is a good way, of course outside redux that would be much harder to accomplish but it can be done
                 if (result?.ids) {
                     return [
                         { type: 'User', id: 'LIST' },
@@ -36,11 +37,49 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'User', id: 'LIST' }]
             }
         }),
+        //this is a a builder mutation, we are mutati
+        addNewUser: builder.mutation({
+            query: initialUserData => ({
+                url: '/users',
+                method: 'POST',
+                body: {
+                    ...initialUserData, //we just need to spread the inital users
+                }
+            }),
+            invalidatesTags: [
+                { type: 'User', id: "LIST" }
+            ]
+        }),
+        updateUser: builder.mutation({
+            query: initialUserData => ({
+                url: '/users',
+                method: 'PATCH',
+                body: {
+                    ...initialUserData,
+                }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }//we need to get to the specific user, hence we are also providing the arg.id
+            ]
+        }),
+        deleteUser: builder.mutation({
+            query: ({ id }) => ({
+                url: `/users`,
+                method: 'DELETE',
+                body: { id }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'User', id: arg.id }//same as update
+            ]
+        }),
     }),
 })
 
 export const { //generates a custom hook and executes the getUsers query
     useGetUsersQuery,
+    useAddNewUserMutation,
+    useUpdateNewUserMutation,
+    useDeleteNewUserMutation,
 } = usersApiSlice
 
 // returns the query result object back after calling getUsers query.
