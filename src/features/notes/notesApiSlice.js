@@ -39,6 +39,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Note', id: 'LIST' }]
             }
         }),
+        //a mutation to add a new note, this will access the data of the note and the use of it will determine if the note can be added
         addNewNote: builder.mutation({
             query: initialNote => ({
                 url: '/notes',
@@ -51,6 +52,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
                 { type: 'Note', id: "LIST" }
             ]
         }),
+        //a mutation to update a note, this will access the data of the note and the use of it will determine if the note can be updated
         updateNote: builder.mutation({
             query: initialNote => ({
                 url: '/notes',
@@ -63,6 +65,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
                 { type: 'Note', id: arg.id }
             ]
         }),
+        //a mutation to delete a note, this will access the data of the note and the use of it will determine if the note can be deleted
         deleteNote: builder.mutation({
             query: ({ id }) => ({
                 url: `/notes`,
