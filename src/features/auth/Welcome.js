@@ -5,6 +5,7 @@ const Welcome = () => {
     const date = new Date()
     const today = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'long' }).format(date)
 
+    //In this component we are showing the welcome page, in this page the user will have the options to route to different functionalities in the app, among them the user can view notes, add a new note, view user Settings.
     const content = (
         <section className="welcome">
 

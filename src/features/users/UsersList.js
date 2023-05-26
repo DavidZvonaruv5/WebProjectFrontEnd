@@ -18,16 +18,21 @@ const UsersList = () => {
   
   let content
 
+  //check if the content is loading, if so, display the loading message
   if (isLoading) content = <p>Loading...</p>
 
+  //if there's an error, display the error message on the screen
   if (isError) {
     content = <p className="errmsg">{error?.data?.message}</p>
   }
 
+  //
   if (isSuccess) {
     const { ids } = users
     const tableContent = ids?.length ? ids.map(userId => <User key={userId} userId={userId} />) : null
-    
+    //this will display a table with all of the users, the table will have username, roles and edit headers
+    //in each row of the table we will display a mapped by each of the users ids
+    //for each user we are creating a User component where we're passing down the id as a prop
     content = (
       <table className="table table--users">
       <thead className="table__thead">

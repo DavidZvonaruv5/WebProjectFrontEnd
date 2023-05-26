@@ -16,7 +16,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError
             },
-             //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds in abit low, in production it should be atleast one minute
+             //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds is a bit low, in production it should be atleast one minute
             //in this project we are actually not going to use this
             // keepUnusedDataFor: 5, the default will be 60 seconds
             transformResponse: responseData => {
@@ -39,7 +39,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'User', id: 'LIST' }]
             }
         }),
-        //this is a a builder mutation, we are mutati
+
+        //in every mutation, invalidatesTags section is used to specicy the tags after the mutation is successful
+
+        //this is a a builder mutation, with this we can add a new user in a more generic way
         addNewUser: builder.mutation({
             query: initialUserData => ({
                 url: '/users',
@@ -52,6 +55,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 { type: 'User', id: "LIST" }
             ]
         }),
+        //update user mutation will help us update a user in a more generic way
         updateUser: builder.mutation({
             query: initialUserData => ({
                 url: '/users',
@@ -64,6 +68,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 { type: 'User', id: arg.id }//we need to get to the specific user, hence we are also providing the arg.id
             ]
         }),
+        //delete user mutation that will help us delete a user in a more generic way
         deleteUser: builder.mutation({
             query: ({ id }) => ({
                 url: `/users`,
