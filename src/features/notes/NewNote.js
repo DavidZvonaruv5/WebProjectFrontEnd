@@ -6,8 +6,10 @@ import NewNoteForm from './NewNoteForm'
 const NewNote = () => {
     const users = useSelector(selectAllUsers) //get all users from the store
 
-    //check if there are users that got pulled from the store, if not display Loading on the page, after the users are pulled, the users const will be true, and NewNoteForm component will be displayed on the screen, where a new note can be created.
-    const content = users ? <NewNoteForm users={users} /> : <p>Loading...</p>
+    if (!users?.length) return <p>No users found</p> //if there are no users in the store, display this message
+
+    //NewNoteForm component will be displayed on the screen, where a new note can be created.
+   const content = <NewNoteForm users={users} />
 
     //the content will be returned and displayed from here.
     return content

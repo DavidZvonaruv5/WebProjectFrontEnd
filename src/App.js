@@ -12,6 +12,7 @@ import EditNote from './features/notes/EditNote'
 import NewNote from './features/notes/NewNote'
 import Prefetch from './features/auth/Prefetch'
 
+//starting with the permenent layout, and adding routes to the page
 function App() {
   return (
     <Routes>
