@@ -10,7 +10,7 @@ const UsersList = () => {
     isSuccess, //if the query was successful
     isError, //if theres an error in the query
     error //contains the error object with the error message
-  } = useGetUsersQuery(undefined, { //if changes will be made on one screen, and the other is on the same screen, until he refreshes the screen he won't see a change, this will make him see the change, it will requery his screeen
+  } = useGetUsersQuery('usersList', { //if changes will be made on one screen, and the other is on the same screen, until he refreshes the screen he won't see a change, this will make him see the change, it will requery his screeen
     pollingInterval: 60000, //every minute it will requery the data
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true
