@@ -1,6 +1,7 @@
 import { useGetNotesQuery } from "./notesApiSlice"
 import Note from "./Note"
 import useAuth from "../../hooks/useAuth"
+import PulseLoader from 'react-spinners/PulseLoader'
 
 //this component will create the notes table, this is the skeleton of the table that will include the headers, and the body of the table will be dynamically put in the table for each note that exists in the DB/
 const NotesList = () => {
@@ -21,7 +22,7 @@ const NotesList = () => {
 
     let content
     //if the content is loading, dispaly "Loading..."
-    if (isLoading) content = <p>Loading...</p>
+    if (isLoading) content = <PulseLoader color={"#FFF"} />
     //if theres an error display the error
     if (isError) {
         content = <p className="errmsg">{error?.data?.message}</p>//error?.data?.message checks if theres an error, if so it will display the error message, if not checks if theres data, if so it will display the data, if not it will display nothing

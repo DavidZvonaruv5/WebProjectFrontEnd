@@ -1,5 +1,6 @@
 import { useGetUsersQuery } from "./usersApiSlice"; //to execute getUsers query
 import User from "./User"; //to display the user data
+import PulseLoader from 'react-spinners/PulseLoader'
 
 const UsersList = () => {
   // Destructuring properties from useGetUsersQuery hook result
@@ -19,7 +20,7 @@ const UsersList = () => {
   let content
 
   //check if the content is loading, if so, display the loading message
-  if (isLoading) content = <p>Loading...</p>
+  if (isLoading) content = <PulseLoader color={"#FFF"} />
 
   //if there's an error, display the error message on the screen
   if (isError) {
