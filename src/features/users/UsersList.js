@@ -1,8 +1,10 @@
 import { useGetUsersQuery } from "./usersApiSlice"; //to execute getUsers query
 import User from "./User"; //to display the user data
 import PulseLoader from 'react-spinners/PulseLoader'
+import useTitle from '../../hooks/useTitle'
 
 const UsersList = () => {
+  useTitle('Users Settings')
   // Destructuring properties from useGetUsersQuery hook result
   //uses the useGetUsersQuery hook to fetch the users data
   const {

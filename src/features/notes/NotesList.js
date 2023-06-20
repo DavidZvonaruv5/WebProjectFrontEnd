@@ -2,10 +2,11 @@ import { useGetNotesQuery } from "./notesApiSlice"
 import Note from "./Note"
 import useAuth from "../../hooks/useAuth"
 import PulseLoader from 'react-spinners/PulseLoader'
+import useTitle from "../../hooks/useTitle"
 
 //this component will create the notes table, this is the skeleton of the table that will include the headers, and the body of the table will be dynamically put in the table for each note that exists in the DB/
 const NotesList = () => {
-
+    useTitle('Notes')
     const {username, isManager, isAdmin} = useAuth()
 
     const {

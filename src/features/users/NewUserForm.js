@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
+import useTitle from '../../hooks/useTitle'
 
 //////////////////////////////////////////
 //The HR or the roles will be making the users-> the new employees that come to the company
@@ -14,7 +15,7 @@ const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 //////////////////////////////////////////
 
 const NewUserForm = () => {
-
+    useTitle('New User')
     const [addNewUser, {//we can use addNewUser function, it is not called immediately
         //and we also get the status of the call
         isLoading,

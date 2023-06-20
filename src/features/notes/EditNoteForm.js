@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import useAuth from "../../hooks/useAuth"
-
 //In this component we are going to build the option to edit a note, this is the logic behind editing/deleting a note, we are going to check here for various things that could prevent the note from being edited/deleted.
 const EditNoteForm = ({ note, users }) => {
-
+    
     const {isManager, isAdmin} = useAuth()
 
     //Using the Note mutation we've created, it will help us check for loading,success and error status.

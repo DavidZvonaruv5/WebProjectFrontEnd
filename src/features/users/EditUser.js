@@ -2,9 +2,11 @@ import { useParams } from 'react-router-dom'
 import EditUserForm from './EditUserForm'
 import { useGetUsersQuery } from './usersApiSlice'
 import { PulseLoader } from 'react-spinners/PulseLoader'
+import useTitle from '../../hooks/useTitle'
 
 //here we dont actually need to make a query, we just need to use the selectUserById from the state of the selector hook!
 const EditUser = () => {
+    useTitle('Edit User')
     const { id } = useParams() //pull the id
 
     //get the user from the state

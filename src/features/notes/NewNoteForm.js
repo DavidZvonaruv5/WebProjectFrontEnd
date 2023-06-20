@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { useAddNewNoteMutation } from "./notesApiSlice"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
-
+import useTitle from "../../hooks/useTitle"
 //in this component we are going to allow the user to make a new note, this is the logic behind creating a new note, here we are going to check various things that can prevent from a note to be created.
 const NewNoteForm = ({ users }) => {
-
+    useTitle('New Note')
     //just like in all of the other components, we chose the method of mutations, we thought it is most appropriate
     //to use this method, we are saving the state of the note is in and with that we are displaying what is necessary.
     const [addNewNote, {

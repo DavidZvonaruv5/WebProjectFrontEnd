@@ -8,7 +8,7 @@ import PulseLoader from 'react-spinners/PulseLoader'
 
 //this component is used to edit a note, 
 const EditNote = () => {
-    useTitle('techNotes: Edit Note')
+    useTitle('Edit Note')
     
     const { id } = useParams() //getting the id from the url parameter.
 
