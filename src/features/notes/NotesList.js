@@ -1,8 +1,12 @@
 import { useGetNotesQuery } from "./notesApiSlice"
 import Note from "./Note"
+import useAuth from "../../hooks/useAuth"
 
 //this component will create the notes table, this is the skeleton of the table that will include the headers, and the body of the table will be dynamically put in the table for each note that exists in the DB/
 const NotesList = () => {
+
+    const {username, isManager, isAdmin} = useAuth()
+
     const {
         data: notes,
         isLoading,
@@ -25,11 +29,19 @@ const NotesList = () => {
     //checks if the notes are loaded successfully, if so assign the ids to the notes and create the table with each id as a row.
     //first the headers are created, and then in the table body we create the table content where we create the note with the Note component and drill down the noteId which in the Note component will be handled to diplay the note.
     if (isSuccess) {
-        const { ids } = notes
+        const { ids, entities } = notes
 
-        const tableContent = ids?.length
-            ? ids.map(noteId => <Note key={noteId} noteId={noteId} />)
-            : null
+        let filteredIds
+        if (isManager || isAdmin) {
+            //if the role is mananger or admin, all notes can be seen
+            filteredIds = [...ids]
+        } else {
+            //filter only your notes
+            filteredIds = ids.filter(noteId => entities[noteId].username === username)
+        }
+
+        //all of the filtrered notes
+        const tableContent = ids?.length && filteredIds.map(noteId => <Note key={noteId} noteId={noteId} />)
 
         content = (
             <table className="table table--notes">

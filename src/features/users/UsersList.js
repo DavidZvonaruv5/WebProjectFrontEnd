@@ -29,7 +29,7 @@ const UsersList = () => {
   //
   if (isSuccess) {
     const { ids } = users
-    const tableContent = ids?.length ? ids.map(userId => <User key={userId} userId={userId} />) : null
+    const tableContent = ids?.length && ids.map(userId => <User key={userId} userId={userId} />)
     //this will display a table with all of the users, the table will have username, roles and edit headers
     //in each row of the table we will display a mapped by each of the users ids
     //for each user we are creating a User component where we're passing down the id as a prop

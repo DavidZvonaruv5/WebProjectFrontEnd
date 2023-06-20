@@ -3,9 +3,12 @@ import { useUpdateNoteMutation, useDeleteNoteMutation } from "./notesApiSlice"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
+import useAuth from "../../hooks/useAuth"
 
 //In this component we are going to build the option to edit a note, this is the logic behind editing/deleting a note, we are going to check here for various things that could prevent the note from being edited/deleted.
 const EditNoteForm = ({ note, users }) => {
+
+    const {isManager, isAdmin} = useAuth()
 
     //Using the Note mutation we've created, it will help us check for loading,success and error status.
     const [updateNote, {
@@ -87,6 +90,19 @@ const EditNoteForm = ({ note, users }) => {
     //setting up the error content to display
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
+    let deleteButton = null
+    if (isManager || isAdmin) {
+        deleteButton = (
+            <button
+                className="icon-button"
+                title="Delete"
+                onClick={onDeleteNoteClicked}
+            >
+                <FontAwesomeIcon icon={faTrashCan} />
+            </button>
+        )
+    }
+
     //In this part we are setting up the page content
     //we are using a fragment tag element so we won't have a semantic React error
     //In the page we are displaying the note we want to edit/delete, we will display each field of the note and allow the user to edit or delete the note, by replacing each field he wants to edit and pressing the edit note button, we will check if the note can be edited via all of the standards we've set up for it, if the note can be edited, the can save variable will be set to true, and the note will be edited.
@@ -107,13 +123,7 @@ const EditNoteForm = ({ note, users }) => {
                         >
                             <FontAwesomeIcon icon={faSave} />
                         </button>
-                        <button
-                            className="icon-button"
-                            title="Delete"
-                            onClick={onDeleteNoteClicked}
-                        >
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </button>
+                        {deleteButton}
                     </div>
                 </div>
                 <label className="form__label" htmlFor="note-title">
