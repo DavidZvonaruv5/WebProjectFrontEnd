@@ -11,12 +11,14 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getUsers: builder.query({
             //queries to the endpoint
-            query: () => '/users',
-            //checks if the response is valid
-            validateStatus: (response, result) => {
-                return response.status === 200 && !result.isError
-            },
-             //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds is a bit low, in production it should be atleast one minute
+            query: () => ({
+                url: '/users',
+                //checks if the response is valid
+                validateStatus: (response, result) => {
+                    return response.status === 200 && !result.isError
+                },
+            }),
+            //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds is a bit low, in production it should be atleast one minute
             //in this project we are actually not going to use this
             // keepUnusedDataFor: 5, the default will be 60 seconds
             transformResponse: responseData => {

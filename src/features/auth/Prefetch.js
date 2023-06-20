@@ -9,17 +9,8 @@ import { Outlet } from 'react-router-dom';
 const Prefetch = () => {
     useEffect(() => {
         // Initiating the subscription for fetching notes and users
-        console.log('subscribing')
-        const notes = store.dispatch(notesApiSlice.endpoints.getNotes.initiate())
-        const users = store.dispatch(usersApiSlice.endpoints.getUsers.initiate())
-
-        // Cleaning up the subscription when the component is unmounted
-        //This is to ensure that the query cleans up when we go to unprotected pages
-        return () => {
-            console.log('unsubscribing')
-            notes.unsubscribe()
-            users.unsubscribe()
-        }
+        store.dispatch(notesApiSlice.util.prefetch('getNotes', 'notesList', { force: true }))
+        store.dispatch(usersApiSlice.util.prefetch('getUsers', 'usersList', { force: true }))
     }, []) // Empty dependency array to ensure this effect only runs once on component mount
 
     return <Outlet />

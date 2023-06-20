@@ -1,15 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom'
-
-import { useSelector } from 'react-redux'
-import { selectUserById } from './usersApiSlice'
-
+import { useGetUsersQuery } from './usersApiSlice'
+import {memo} from 'react'
 
 //in this component, we are passingthe userId as a prop
 const User = ({ userId }) => {
-    //using the userId that we passed down a a prop to get the user
-    const user = useSelector(state => selectUserById(state, userId))
+    
+    //get the user from the query
+    const { user } = useGetUsersQuery("usersList", {
+        selectFromResult: ({ data }) => ({
+            user: data?.entities[userId]
+        }),
+    })
 
     //using useNavigate to route easier
     const navigate = useNavigate()
@@ -41,4 +44,5 @@ const User = ({ userId }) => {
 
     } else return null
 }
-export default User
+const memoizedUser = memo(User)
+export default memoizedUser

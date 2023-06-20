@@ -13,11 +13,13 @@ export const notesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getNotes: builder.query({
             //queries to the endpoint
-            query: () => '/notes',
-            //checks if the response is valid
-            validateStatus: (response, result) => {
-                return response.status === 200 && !result.isError
-            },
+            query: () => ({
+                url: '/notes',
+                //checks if the response is valid
+                validateStatus: (response, result) => {
+                    return response.status === 200 && !result.isError
+                },
+            }),
             //this timer is now set to 5 seconds and its purpose to delete any unused data, 5 seconds in abit low, in production it should be atleast one minute
             // keepUnusedDataFor: 5,  sets to default 60 seconds
             transformResponse: responseData => {
