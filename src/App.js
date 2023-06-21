@@ -15,7 +15,7 @@ import PersistLogin from './features/auth/PersistLogin'
 import RequireAuth from './features/auth/RequireAuth'
 import { ROLES } from './config/roles'
 import useTitle from './hooks/useTitle';
-
+import LiveChat from './features/chat/Livechat'
 
 
 //starting with the permenent layout, and adding routes to the page
@@ -50,7 +50,9 @@ function App() {
                 <Route path=":id" element={<EditNote />} />
                 <Route path="new" element={<NewNote />} />
               </Route>
-
+              <Route path="chat">
+                <Route index element={<LiveChat />} />    
+              </Route>
               </Route>{/* End Dash */}
             </Route>
           </Route>

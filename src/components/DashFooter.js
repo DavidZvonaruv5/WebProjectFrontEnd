@@ -12,6 +12,8 @@ const DashFooter = () => {
 
     const onGoHomeClicked = () => navigate('/dash')
 
+    const goLiveChatClicked = () => navigate('/dash/chat')
+
     let goHomeButton = null
     if (pathname !== '/dash') {
         goHomeButton = (
@@ -25,11 +27,19 @@ const DashFooter = () => {
         )
     }
 
+
+    let liveChat = (
+        <button className="dash-footer__button icon-button" onClick={goLiveChatClicked}>
+            Live chat
+        </button>
+    )
+    
     const content = (
         <footer className="dash-footer">
             {goHomeButton}
             <p>Current User: {username}</p>
             <p>Status:{status}</p>
+             {liveChat}
         </footer>
     )
     return content
