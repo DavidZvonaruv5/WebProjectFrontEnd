@@ -4,6 +4,7 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 import 'firebase/compat/auth'
 import './chatStyle.css'
+import { useEffect } from 'react';
 
 
 
@@ -23,33 +24,60 @@ firebase.initializeApp(firebaseConfig)
 const firestore = firebase.firestore()
 
 
+
 const Livechat = () => {
+  
     
     //we are using the useAuth hook to get the username and status of the user
-    const {username} = useAuth()
+    const {username,isAdmin} = useAuth()
     
+
+  let AdminButton = null
+  if (isAdmin) {
+    AdminButton = (
+      <button className="AdminButton"
+        onClick={async () => {
+          const messagesRef = firestore.collection('messages')
+          const snapshot = await messagesRef.get()
+          const batch = firestore.batch()
+
+          snapshot.docs.forEach((doc) => {
+            batch.delete(doc.ref)
+        })
+
+        await batch.commit()
+      }}
+      >
+        Clear Chat
+      </button>
+    )
+  }
 
     let content
 
     content = (
         <>
-            <h1>This is a live chat for the company</h1>
-            <h4>User: {username}</h4>
+          <h1>This is a live chat for the company</h1>
+          <h4 className="userTitle">User: {username}</h4>
+          <hr></hr>
+        <div>
             <ChatRoom></ChatRoom>
+          </div>
+          {AdminButton}
         </>
     )
-    function ChatRoom() {
-        const dummy = useRef();
-        const messagesRef = firestore.collection('messages');
-        const query = messagesRef.orderBy('createdAt').limit(25);
+  function ChatRoom() {
+        const dummy = useRef()
+        const messagesRef = firestore.collection('messages')
+        const query = messagesRef.orderBy('createdAt')
       
-        const [messages] = useCollectionData(query, { idField: 'id' });
+        const [messages] = useCollectionData(query, { idField: 'id' })
       
-        const [formValue, setFormValue] = useState('');
+        const [formValue, setFormValue] = useState('')
       
       
         const sendMessage = async (e) => {
-          e.preventDefault();
+          e.preventDefault()
           await messagesRef.add({
               text: formValue,
               uid: username,
@@ -59,9 +87,15 @@ const Livechat = () => {
           setFormValue('');
           dummy.current.scrollIntoView({ behavior: 'smooth' });
         }
-      
+        
+        useEffect(() => {
+          if(dummy.current) {
+            dummy.current.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, [messages]);
+    
         return (<>
-          <main>
+          <main className="Chatroom">
       
             {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
       
@@ -69,11 +103,11 @@ const Livechat = () => {
       
           </main>
       
-          <form onSubmit={sendMessage}>
+          <form className="chat-form" onSubmit={sendMessage}>
       
             <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something" />
       
-            <button type="submit" disabled={!formValue}>🕊️</button>
+            <button className='SendToChatButton' type="submit" disabled={!formValue}>🕊️</button>
       
           </form>
         </>)
@@ -85,7 +119,7 @@ const Livechat = () => {
     
       
         return (<>
-          <div>
+          <div className={`chat-message ${uid === username ? 'self' : 'others'}`}>
             <p>{uid}: {text}</p>
           </div>
         </>)
