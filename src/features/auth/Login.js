@@ -40,7 +40,7 @@ const Login = () => {
       } else if (err.status === 400) {
         setErrMsg('Missing Username Or Password')
       } else if (err.status === 401) {
-        setErrMsg('nauthorized')
+        setErrMsg('Unauthorized')
       } else {
         setErrMsg(err.data?.message)
       }
