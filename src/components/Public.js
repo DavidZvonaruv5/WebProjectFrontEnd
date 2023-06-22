@@ -31,3 +31,19 @@ const Public = () => {
     return content
 }
 export default Public
+
+/*
+  The Public component represents the public landing page of the TaskFlow application.
+  It provides information about TaskFlow, its services, contact details, and a link to the employee login page.
+
+  The component consists of the following main elements:
+
+  - Header: Displays the TaskFlow title.
+  - Main Section: Contains information about TaskFlow's services, tasks management, and contact details.
+  - Address: Displays the TaskFlow address and contact information.
+  - Logo: Renders the TaskFlow logo using an image.
+  - Footer: Provides a link to the employee login page.
+
+  The Public component is intended to be used as the landing page of the application.
+  It provides an overview of TaskFlow and directs users to the employee login page for access to their accounts.
+*/

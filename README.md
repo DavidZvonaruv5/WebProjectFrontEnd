@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# TaskFlow Frontend
+
+This is the frontend for the TaskFlow project, a to-do list and live chat system designed for tech companies.
+
+## Getting Started
+
+To get a local copy up and running, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/DavidZvonaruv5/WebProjectFrontEnd.git`
+2. Navigate into the project directory: `cd WebProjectFrontEnd`
+3. Install the dependencies: `npm install`
+4. Start the application: `npm start`
+5. in order to make the site functional, clone the repository: `git clone https://github.com/DavidZvonaruv5/WebProject.git` in a different instance of VSCode, navagate to the directory, install dependencies and start the application via `npm start`.
+6. now you can fully interact with the site!
+
+After running `npm start`, the application should open in your web browser at `http://localhost:3000`.
+
+## Usage
+
+Once you have the TaskFlow frontend and backend running, you can interact with the application through your web browser.
+
+Here are the main features you can use:
+
+### User Login
+
+To use TaskFlow, you need to log in to an account. Only an admin can sign you up. This is designed to be a system for tech companies where the team leader signs up each of his team members. 
+
+For example, to log in as an employee, the username is "Dor" and the password is "123456". This corresponds to a person named Dor that works in the company.
+### Viewing and Assigning Notes
+
+Once logged in, you can view your notes on the dashboard. If you're an admin or a team leader, you can also assign notes to your team members.
+
+### Live Chat
+
+TaskFlow includes a live chat feature. You can use this to communicate with your team members in real time.
+
+### Admin Features
+
+If you're an admin, you have additional features available. You can remove users and view everyone's notes.
+
+Please note that this is a system for tech companies, and the team leader signs up each of his team members. Only admins have the ability to remove users and view everyone's notes.
+
+## Built With
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Authors
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **David Zvonaruv**
+* **Gal Farfel**

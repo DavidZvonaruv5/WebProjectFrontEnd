@@ -140,3 +140,30 @@ const DashHeader = () => {
     return content
 }
 export default DashHeader
+
+/*
+  The DashHeader component is responsible for rendering the header section of a dashboard.
+  It displays the TaskFlow logo, navigation buttons, and handles user logout functionality.
+
+  The component utilizes various libraries, hooks, and FontAwesome icons to implement the desired functionality:
+
+  - `@fortawesome/react-fontawesome` and `@fortawesome/free-solid-svg-icons` are used to render the FontAwesome icons.
+  - The `react-router-dom` library is used for routing and navigation within the dashboard.
+  - The `useAuth` custom hook is used to fetch and manage authentication-related information.
+  - The `useSendLogoutMutation` hook is used to send a logout mutation.
+
+  The component consists of the following main elements:
+
+  - `useAuth`: The useAuth hook is used to retrieve the isManager and isAdmin flags for user role verification.
+  - `useNavigate` and `useLocation`: These hooks are used for programmatic navigation and accessing the current pathname.
+  - `useSendLogoutMutation`: This hook is used to send a logout mutation and manage the logout process.
+  - `onNewNoteClicked`: This function is triggered when the New Note button is clicked and navigates to '/dash/notes/new'.
+  - `onNewUserClicked`: This function is triggered when the New User button is clicked and navigates to '/dash/users/new'.
+  - `onNotesClicked`: This function is triggered when the Notes button is clicked and navigates to '/dash/notes'.
+  - `onUsersClicked`: This function is triggered when the Users button is clicked and navigates to '/dash/users'.
+  - Dynamic Button Rendering: The component conditionally renders buttons based on the current pathname and user roles.
+  - `sendLogout`: This function triggers the logout process when the Logout button is clicked.
+  - JSX Content: The JSX content of the header, consisting of the logo, navigation buttons, and error handling.
+
+  The DashHeader component exports the default export, making it available for use in other components.
+*/
